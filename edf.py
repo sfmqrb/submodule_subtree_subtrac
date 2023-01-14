@@ -18,7 +18,6 @@ while True:
         import sys
         sys.exit(1)
         
-    print('---', time, '---')
     if valid_ls:
         x = valid_ls[0]
         for valid in valid_ls:
@@ -28,9 +27,12 @@ while True:
         
         id = x['id']
         tasks[id]['interval'] -= 1
-        print('task -> ', id)
+        print('task number -> ', id)
     else:
-        print('task -> ', 'NAN')
+        print('task number -> ', 'NAN')
+        
+    print('-----', time, '-----\n')
+
         
     end_condition = [tasks[i+1] for i in range(len(tasks)) if tasks[i+1]['interval'] != 0]
     end_condition = True if len(end_condition) == 0 else False
