@@ -1,41 +1,76 @@
-from generate import generate_tasks
+from generate import generate_tasks_rms
+import sys
+
+def lcm(a, b):
+    if a > b:
+        greater = a
+    else:
+        greater = b
+    while(True):
+        if((greater % a == 0) and (greater % b == 0)):
+            lcm = greater
+            break
+        greater += 1
+    return lcm
+
+
 
 n = int(input('input n: '))
 
-tasks = generate_tasks(n)
+tasks = generate_tasks_rms(n)
+print(tasks)
 time = 0
 
-end_condition = False
+upper_bound = n * (2**(1/n) - 1)
 
-print(tasks)
+utility = 0
+for id in tasks:
+    utility += tasks[id]['interval'] / tasks[id]['period'] 
+
+print('utility:', utility)
+print('upper_bound:', upper_bound)
+
+if utility > upper_bound:
+    print("no valid rms implementation")
+    sys.exit(1)
+
+max_time = 1
+for id in tasks:
+    max_time = lcm(max_time, tasks[id]['period'])
+
+end_time = max_time
+print('max_time', max_time)
+
 while True:
-    if end_condition:
+    if time > end_time:
         break
-    valid_ls = [tasks[i+1] for i in range(len(tasks)) if tasks[i+1]['begin'] < time and tasks[i+1]['interval'] > 0]
-    deadline_passed_ls = [x for x in valid_ls if x['interval'] > 0 and x['deadline'] <= time] 
-    if len(deadline_passed_ls) > 0:
-        print('not valid sequence')
-        import sys
-        sys.exit(1)
-        
-    print('---', time, '---')
-    if valid_ls:
-        x = valid_ls[0]
-        for valid in valid_ls:
-            if valid['deadline'] < x['deadline']:
-                x = valid
-        earliest_deadline_task = x
-        
-        id = x['id']
-        tasks[id]['interval'] -= 1
-        print('task -> ', id)
+    
+    period_candid = -1
+    id_candid = -1
+    for id in tasks:
+        need = tasks[id]['time_need']   
+        if need > 0:
+            if period_candid == -1:
+                period_candid = tasks[id]['period']   
+                id_candid = id
+            if period_candid > tasks[id]['period']:
+                period_candid = tasks[id]['period']   
+                id_candid = id
+                
+    if period_candid == -1:
+        id_candid = "NAN"
     else:
-        print('task -> ', 'NAN')
+        tasks[id_candid]['time_need'] -= 1
         
-    end_condition = [tasks[i+1] for i in range(len(tasks)) if tasks[i+1]['interval'] != 0]
-    end_condition = True if len(end_condition) == 0 else False
-
+    print('task number -> ', id_candid)
+    print('-----', time, '-----\n')
     # print(time, tasks)
+    
+    for id in tasks:
+        period = tasks[id]['period']
+        if time % period == 0:
+            tasks[id]['time_need'] += tasks[id]['interval']
+
     time += 1
     
     

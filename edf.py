@@ -1,8 +1,8 @@
-from generate import generate_tasks
+from generate import generate_tasks_edf
 
 n = int(input('input n: '))
 
-tasks = generate_tasks(n)
+tasks = generate_tasks_edf(n)
 time = 0
 
 end_condition = False
