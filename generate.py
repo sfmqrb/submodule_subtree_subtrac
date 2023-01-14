@@ -27,7 +27,6 @@ def generate_tasks_edf(n: int,
             'id': id[i],
             'begin': begins[i],
             'deadline': deadlines[i],
-            'priority': priorities[i],
             'interval': intervals[i]
         }
         for i in range(len(id))
