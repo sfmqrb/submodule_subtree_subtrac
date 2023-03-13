@@ -1,6 +1,6 @@
 # submodule_subtree_subtrac
 
-Get to know about theses three "subs" by checking this [link](https://blog.summitto.com/posts/submodules_subtree_subtrac/).
+Get to know about these three "subs" by checking this [link](https://blog.summitto.com/posts/submodules_subtree_subtrac/).
 
 ## Conclusion
 
