@@ -1,0 +1,3 @@
+[submodule "src/embedded1"]
+	path = src/embedded1
+	url = https://github.com/sfmqrb/embedded.git
