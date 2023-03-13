@@ -1,0 +1,40 @@
+input n: 2
+{1: {'id': 1, 'begin': 1, 'deadline': 17, 'priority': 1, 'interval': 4}, 2: {'id': 2, 'begin': 2, 'deadline': 30, 'priority': 9, 'interval': 7}}
+task number ->  NAN
+----- 0 -----
+
+task number ->  NAN
+----- 1 -----
+
+task number ->  1
+----- 2 -----
+
+task number ->  1
+----- 3 -----
+
+task number ->  1
+----- 4 -----
+
+task number ->  1
+----- 5 -----
+
+task number ->  2
+----- 6 -----
+
+task number ->  2
+----- 7 -----
+
+task number ->  2
+----- 8 -----
+
+task number ->  2
+----- 9 -----
+
+task number ->  2
+----- 10 -----
+
+task number ->  2
+----- 11 -----
+
+task number ->  2
+----- 12 -----
